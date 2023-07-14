@@ -1,0 +1,75 @@
+.head{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    background-color: pink;
+}
+
+.div_h1{
+    width: 40%;
+}
+.div_h1 h1{
+    color: #fff;
+    margin: 0 3%;
+}
+.navbar{
+    display: flex;
+    width: 50%;
+    justify-content: flex-end;
+
+}
+.navbar li{
+    margin: 3%;
+}
+
+.navbar li a{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: #fff;
+    font-size: 2vw;
+    text-decoration: none;
+}
+
+.navbar li a:hover{
+    text-decoration: underline;
+}
+
+.main{
+    width: 100%;
+    text-align: center;
+    margin-top: 5%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container_head{
+    font-weight: 400;
+    width: 60%;
+    background-color: #cdcbcb;
+}
+
+.container_head h1{
+    font-weight: 400;
+}
+
+.container{
+    width: 60%;
+    margin: 3% 0;
+    border-top: 1px solid #cdcbcb;
+
+}
+
+.table_info{
+    width: 100%;
+}
+.table_info td{
+    padding: 2%;
+    border-bottom: 1px solid #4f4f4f;
+}
+
+.table_info thead tr th{
+    border-bottom: 1px solid #4f4f4f;
+    padding: 2%;
+}
