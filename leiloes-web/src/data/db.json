@@ -1,0 +1,52 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Leonardo",
+      "username": "lsales",
+      "password": "leo"
+    },
+    {
+      "id": 2,
+      "name": "Larissa",
+      "username": "larissa",
+      "password": "lari"
+    },
+    {
+      "username": "eve",
+      "name": "Evelyn Sales",
+      "password": "eve",
+      "id": 3
+    }
+  ],
+  "objects": [
+    {
+      "id": 1,
+      "name": "Iphone XR",
+      "date": "15-04-2023",
+      "price": "500",
+      "posted": "Larissa",
+      "username": "larissa",
+      "userId": 2
+    },
+    {
+      "id": 2,
+      "name": "Tablet Samsung",
+      "date": "09-05-2023",
+      "price": "2000",
+      "posted": "Leonardo",
+      "username": "lsales",
+      "userId": 1
+    },
+    {
+      "name": "Caneta",
+      "date": "2023-08-02",
+      "price": "10",
+      "posted": "Leonardo",
+      "username": "lsales",
+      "userId": 1,
+      "id": 3
+    }
+  ],
+  "lances": []
+}

@@ -3,7 +3,7 @@
     width: 100%;
     align-items: center;
     justify-content: space-between;
-    background-color: pink;
+    background-color: #f1acb8;
 }
 
 .div_h1{
@@ -17,6 +17,7 @@
     display: flex;
     width: 50%;
     justify-content: flex-end;
+    list-style: none;
 
 }
 .navbar li{
@@ -58,18 +59,40 @@
     width: 60%;
     margin: 3% 0;
     border-top: 1px solid #cdcbcb;
-
+    overflow-y: auto;
+    max-height: 15em;
 }
 
 .table_info{
     width: 100%;
 }
 .table_info td{
+    width: 20%;
     padding: 2%;
     border-bottom: 1px solid #4f4f4f;
 }
 
 .table_info thead tr th{
+    width: 20%;
     border-bottom: 1px solid #4f4f4f;
     padding: 2%;
+}
+
+.lance{
+    background-color: #f1acb8;
+    color: #fff;
+    padding: 0.7%;
+    border: 1px solid #000;
+    cursor: pointer;
+    width: 70%;
+    height: 1.5rem;
+    font-weight: 700;
+}
+
+.lance:hover{
+    background-color: #c17c88;
+}
+
+img{
+    width: 55%;
 }

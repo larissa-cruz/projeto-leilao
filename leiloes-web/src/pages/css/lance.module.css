@@ -1,0 +1,126 @@
+.details div{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 2%;
+}
+
+.details div h1{
+    font-size: 1rem;
+    margin: 0px 0 5px;
+}
+
+.details div p{
+    margin: 0 0 5px;
+}
+
+.container{
+    width: 60%;
+    margin: 1% 0;
+    border-top: 1px solid #cdcbcb;
+    overflow-y: auto;
+    max-height: 15em;
+    border: 1px solid #000;
+}
+
+.main{
+    width: 100%;
+    text-align: center;
+    margin-top: 1%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form{
+    width: 60%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.form label{
+    width: 92%;
+    text-align: initial;
+    display: flex;
+    justify-content: space-between;
+}
+
+.form label span{
+    padding: 0.5%;
+    background-color: #78787873;
+    font-weight: 600;
+    border: 1px solid #000000ab;
+    font-size: 0.8rem;
+    width: 10%;
+}
+
+.form label input{
+    border: 1px solid #000000;
+    padding: 0.5%;
+    width: 85%;
+}
+
+.info_lance{
+    width: 60%;
+    margin: 2% 0;
+    border: 1px solid;
+}
+
+.info_lance h1{
+    text-align: initial;
+    font-weight: 500;
+    font-size: 1.5rem;
+    margin: 2%;
+}
+
+.info_lance hr{
+    width: 90%;
+}
+
+.info_lance ul{
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+}
+
+.info_lance ul li{
+    width: 30%;
+}
+.info_lance_li_header{
+   font-size: 1.2rem;
+   font-weight: bold; 
+}
+.info_lance_li_bottom{
+    font-weight: 600;
+    font-style: italic;
+    margin: 1% 0;
+}
+
+.btn_lance{
+    background-color: #f1acb8;
+    color: #fff;
+    padding: 0.7%;
+    border: 1px solid #000;
+    cursor: pointer;
+    width: 7%;
+    font-weight: 700;
+}
+
+.btn_submit{
+    background-color: #f1acb8;
+    color: #fff;
+    padding: 0.7%;
+    border: 1px solid #000;
+    cursor: pointer;
+    font-weight: 700;
+    width: 6rem;
+    height: 1.8em;
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+.div_back{
+    width: 60%;
+    text-align: initial;
+}

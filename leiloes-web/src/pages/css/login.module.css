@@ -1,0 +1,52 @@
+.section_login{
+    width: 60%;
+    margin-top: 1%;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.login{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.login div{
+    width: 100%;
+    margin: 2% 0px;
+}
+
+.submit{
+    background-color: #f1acb8;
+    color: #fff;
+    padding: 0.7%;
+    border: 1px solid #000;
+    cursor: pointer;
+    width: 10%;
+}
+
+.submit:hover{
+    background-color: #c17c88;
+}
+
+.label_login{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.label_login span{
+    font-weight: 600;
+}
+
+.label_login input{
+    width: 98%;
+    height: 1.4rem;
+}
+
+.p_succes{
+    color: green;
+}
+
+.p_error{
+    color: red;
+}

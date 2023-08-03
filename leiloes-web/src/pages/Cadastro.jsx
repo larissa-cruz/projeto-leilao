@@ -1,6 +1,5 @@
 import { useState, useContext } from 'react'
 import { UserContext } from "../context/UserContext"
-import { useNavigate } from 'react-router-dom'
 
 import Nav from './modules/Nav'
 import Loading from './modules/Loading'
@@ -9,33 +8,44 @@ import stylesHome from "./css/home.module.css"
 import styles from "./css/login.module.css"
 
 
-const Login = () => {
+const Cadastro = () => {
 
-  const [username, setUsername] = useState()
-  const [password, setPassword] = useState()
-  const [load, setLoading] = useState(false)
+  const [name, setName] = useState('')
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
+  const [load, setLoad] = useState(false)
+  const [info, setInfo] = useState()
 
   const { handleUser, setData } = useContext(UserContext)
 
-  const navigate = useNavigate()
-
   const handleSubmit = async(e) => {
     e.preventDefault();
-    setLoading(true)
-    const url = `http://localhost:3000/users?username=${username}`
-    await fetch(url).then((res) => {
+    const url = "http://localhost:3000/users"
+    setLoad(true)
+    const user = {
+      username,
+      name,
+      password
+    }
+    await fetch(url,{
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(user),
+    }).then((res) => {
       return res.json()
     }).then((res) =>{
-      setData(res[0])
-      if(res[0].username === username && res[0].password === password){
-        handleUser(true, res[0].username)
-        navigate("/")
-      }
-    }
-    ).catch((error) => {
-      alert("Ocorreu um erro interno no servidor tente novamente mais tarde")
+      setData(res)
+      handleUser(true, res.username)
+      setInfo("success")
+    }).catch((error) => {
+      setInfo("error")
     })
-    setLoading(false)
+    setName('')
+    setPassword('')
+    setUsername('')
+    setLoad(false)
   }
 
   return (
@@ -46,12 +56,12 @@ const Login = () => {
             </div>
             <ul className={stylesHome.navbar}>
                 <Nav PageName="Home" link="/" />
-                <Nav PageName="Cadastre-se" link="/cadastro" />
+                <Nav PageName="Login" link="/login" />
             </ul>
         </header>
         <main className={stylesHome.main}>
             <header className={stylesHome.container_head}>
-                <h1>Login</h1>
+                <h1>Cadastro</h1>
             </header>
             <section className={styles.section_login}>
               <form onSubmit={handleSubmit} className={styles.login}>
@@ -59,6 +69,12 @@ const Login = () => {
                   <label className={styles.label_login}>
                     <span>Usuário</span>
                     <input type="text" required onChange={(e) => setUsername(e.target.value)} />
+                  </label>
+                </div>
+                <div>
+                  <label className={styles.label_login}>
+                    <span>Nome</span>
+                    <input type="text" required onChange={(e) => setName(e.target.value)} />
                   </label>
                 </div>
                 <div>
@@ -76,10 +92,14 @@ const Login = () => {
                 </>}
               </form>
             </section>
+            {info === "success" ?
+            <p className={styles.p_succes}>Usuário criado com sucesso, agora você pode fazer Login na plataforma</p>
+            :info === "error" ?
+            <p className={styles.p_error}>Houve algum erro, tente novamente </p>:<></>}
+            {load && <Loading />}
         </main>
-          {load && <Loading />}
     </div>
   )
 }
 
-export default Login
+export default Cadastro
