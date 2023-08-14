@@ -1,5 +1,16 @@
 package br.com.leilao.leiloesapi.usuario;
 
-public record DadosCadastroUsuario(String name, String username, String password) {
+import jakarta.validation.constraints.NotBlank;
+
+public record DadosCadastroUsuario(
+    
+    @NotBlank
+    String name, 
+
+    @NotBlank
+    String username, 
+
+    @NotBlank
+    String password) {
 
 }
