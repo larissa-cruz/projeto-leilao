@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.leilao.leiloesapi.usuario.DadosCadastroUsuario;
 import br.com.leilao.leiloesapi.usuario.Usuario;
 import br.com.leilao.leiloesapi.usuario.UsuarioRepository;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/cadastrousuario")
@@ -20,7 +21,7 @@ public class UsuarioController {
 
     @PostMapping
     @Transactional
-    public void cadastrarUsuario(@RequestBody DadosCadastroUsuario dadosCadastroUsuario) {
+    public void cadastrarUsuario(@RequestBody @Valid DadosCadastroUsuario dadosCadastroUsuario) {
         usuarioRepository.save(new Usuario(dadosCadastroUsuario));
     }
     
