@@ -22,10 +22,18 @@ const Login = () => {
   const handleSubmit = async(e) => {
     e.preventDefault();
     setLoading(true)
-    const url = `http://localhost:3000/users?username=${username}`
-    await fetch(url).then((res) => {
+    const url = `http://localhost:8080/login`
+    const user = {username, password}
+    console.log(user)
+    await fetch(url,{
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        body: JSON.stringify(user)}
+    }).then((res) => {
       return res.json()
     }).then((res) =>{
+      console.log(res)
       setData(res[0])
       if(res[0].username === username && res[0].password === password){
         handleUser(true, res[0].username)

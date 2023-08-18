@@ -20,7 +20,7 @@ const Cadastro = () => {
 
   const handleSubmit = async(e) => {
     e.preventDefault();
-    const url = "http://localhost:3000/users"
+    const url = "http://localhost:8080/usuario"
     setLoad(true)
     const user = {
       username,
