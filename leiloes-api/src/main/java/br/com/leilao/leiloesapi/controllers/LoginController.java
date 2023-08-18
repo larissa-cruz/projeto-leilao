@@ -14,7 +14,7 @@ import br.com.leilao.leiloesapi.usuario.Usuario;
 import br.com.leilao.leiloesapi.usuario.UsuarioRepository;
 
 
-@CrossOrigin
+@CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
 @RestController
 @RequestMapping("/login")
 public class LoginController {
