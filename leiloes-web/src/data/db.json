@@ -17,6 +17,12 @@
       "name": "Evelyn Sales",
       "password": "eve",
       "id": 3
+    },
+    {
+      "username": "larissa2",
+      "name": "Larissa",
+      "password": "lari",
+      "id": 4
     }
   ],
   "objects": [
@@ -39,14 +45,36 @@
       "userId": 1
     },
     {
-      "name": "Caneta",
-      "date": "2023-08-02",
-      "price": "10",
+      "name": "Jeep Renegade",
+      "date": "2023-08-03",
+      "price": "2000",
       "posted": "Leonardo",
       "username": "lsales",
       "userId": 1,
       "id": 3
     }
   ],
-  "lances": []
+  "lances": [
+    {
+      "objectId": 1,
+      "name": "larissa2",
+      "lance": 560,
+      "dataPost": "3/7/2023",
+      "id": 1
+    },
+    {
+      "objectId": 1,
+      "name": "lsales",
+      "lance": 900,
+      "dataPost": "3/7/2023",
+      "id": 2
+    },
+    {
+      "objectId": 2,
+      "name": "larissa",
+      "lance": 5000,
+      "dataPost": "3/7/2023",
+      "id": 3
+    }
+  ]
 }

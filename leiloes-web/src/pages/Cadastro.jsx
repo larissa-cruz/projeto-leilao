@@ -27,6 +27,7 @@ const Cadastro = () => {
       name,
       password
     }
+    
     await fetch(url,{
       method: "POST",
       headers: {

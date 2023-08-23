@@ -33,18 +33,19 @@ const Home = () => {
         navigate("/novo-leilao")
     }
 
+    // removido para entregar da funcionalidade
 
-    useEffect(() =>{
-        async function fetchData(){
-        const res = await fetch(url)
+    // useEffect(() =>{
+    //     async function fetchData(){
+    //     const res = await fetch(url)
         
-        const data = await res.json()
+    //     const data = await res.json()
         
-        setData(data)
-        }
-        fetchData()
+    //     setData(data)
+    //     }
+    //     fetchData()
         
-    },[])
+    // },[])
 
 
   return (

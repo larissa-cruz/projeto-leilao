@@ -24,24 +24,21 @@ const Login = () => {
     setLoading(true)
     const url = `http://localhost:8080/login`
     const user = {username, password}
-    console.log(user)
+
     await fetch(url,{
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        body: JSON.stringify(user)}
+      },
+      body: JSON.stringify(user),
     }).then((res) => {
-      return res.json()
-    }).then((res) =>{
-      console.log(res)
-      setData(res[0])
-      if(res[0].username === username && res[0].password === password){
-        handleUser(true, res[0].username)
+      if(res.status === 200){
+        setData(user)
+        handleUser(true, username)
         navigate("/")
+      }else if (res.status === 401){
+        alert("erro, usuário ou senha incorretos")
       }
-    }
-    ).catch((error) => {
-      alert("Ocorreu um erro interno no servidor tente novamente mais tarde")
     })
     setLoading(false)
   }
