@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import br.com.leilao.leiloesapi.usuario.DadosCadastroUsuario;
+import br.com.leilao.leiloesapi.usuario.DadosDetalhamentoUsuario;
 import br.com.leilao.leiloesapi.usuario.Usuario;
 import br.com.leilao.leiloesapi.usuario.UsuarioRepository;
 import jakarta.validation.Valid;
@@ -25,14 +26,14 @@ public class UsuarioController {
 
     @PostMapping
     @Transactional
-    public ResponseEntity<Usuario> cadastrarUsuario(@RequestBody @Valid DadosCadastroUsuario dadosCadastroUsuario, UriComponentsBuilder uriBuilder) {
+    public ResponseEntity<DadosDetalhamentoUsuario> cadastrarUsuario(@RequestBody @Valid DadosCadastroUsuario dadosCadastroUsuario, UriComponentsBuilder uriBuilder) {
         
         var usuario = new Usuario(dadosCadastroUsuario);
         usuarioRepository.save(usuario);
 
         var uri = uriBuilder.path("/usuario/{id}").buildAndExpand(usuario.getId()).toUri();
 
-        return ResponseEntity.created(uri).body(usuario);
+        return ResponseEntity.created(uri).body(new DadosDetalhamentoUsuario(usuario));
     }
     
 }
