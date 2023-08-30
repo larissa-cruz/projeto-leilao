@@ -30,6 +30,7 @@ public class Leilao {
         this.name = dadosCadastroLeilao.name();
         this.price = dadosCadastroLeilao.price();
         this.data = dadosCadastroLeilao.data();
+        this.usuario = new Usuario(dadosCadastroLeilao.iduser(), null, null, null);
 
     }
     
