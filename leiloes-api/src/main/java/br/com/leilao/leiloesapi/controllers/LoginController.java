@@ -24,11 +24,11 @@ public class LoginController {
 
     @PostMapping
     @Transactional
-    public ResponseEntity<Void> loginUsuario(@RequestBody Usuario usuario) {
+    public ResponseEntity<Usuario> loginUsuario(@RequestBody Usuario usuario) {
         Usuario usuarioLogado = this.usuarioRepository.findByUsernameAndPassword(usuario.getUsername(), usuario.getPassword());
 
         if (usuarioLogado != null) {
-            return ResponseEntity.ok().build();
+            return ResponseEntity.ok(usuarioLogado);
         } else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
