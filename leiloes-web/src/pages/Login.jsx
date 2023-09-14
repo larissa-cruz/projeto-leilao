@@ -33,12 +33,16 @@ const Login = () => {
       body: JSON.stringify(user),
     }).then((res) => {
       if(res.status === 200){
-        setData(user)
-        handleUser(true, username)
         navigate("/")
       }else if (res.status === 401){
         alert("erro, usuário ou senha incorretos")
       }
+      return res.json()
+    }).then((response) =>{
+      console.log(response)
+      setData(response)
+      
+      handleUser(true, username)
     })
     setLoading(false)
   }

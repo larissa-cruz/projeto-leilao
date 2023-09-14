@@ -15,7 +15,7 @@ import Unautorized from './Unautorized'
 const Leilao = () => {
 
     const [name, setname] = useState("")
-    const [date, setDate] = useState("")
+    const [data, setData] = useState("")
     const [price, setPrice] = useState("")
     
 
@@ -28,19 +28,20 @@ const Leilao = () => {
         navigate("/")
     }
 
+    const { handleUser, auth, usuario, data: dataUser } = useContext(UserContext)
+
     const handleSubmit = async(e) =>{
         e.preventDefault()
 
-        const url = "http://localhost:3000/objects"
+        const url = "http://localhost:8080/leilao"
 
         const info = {
             name,
-            date,
+            data,
             price,
-            posted : data.name,//name
-            username : data.username,
-            userId : data.id
+            "iduser" : dataUser.id
         }
+        console.log(info)
         await fetch(url,{
             method: "POST",
             headers: {
@@ -48,17 +49,19 @@ const Leilao = () => {
             },
             body: JSON.stringify(info),
           }).then((res) => {
-            alert("Seu objeto já foi criado e postado, vá até a aba principal para ver ou crie outro")
+            if(res.status === 201){
+                alert("Seu objeto já foi criado e postado, vá até a aba principal para ver ou crie outro")
+            }
             return res.json()
           }).catch((error) => {
             alert("Houve algum erro na hora da criação do do objeto, tente mais tarde")
           })
           setname("")
-          setDate("")
+          setData("")
           setPrice("")
     }
 
-    const { handleUser, auth, usuario, data } = useContext(UserContext)
+    
 
     const navigate = useNavigate()
     
@@ -96,7 +99,7 @@ const Leilao = () => {
                 <div className={styles.div_input}>
                     <label className={stylesLogin.label_login}>
                         <span className={styles.span}>Data do leilão</span>
-                        <input type="date" onChange={(e) => setDate(e.target.value)} required placeholder='Insira a data no formato dd/mm/aa' className={styles.inputs} />
+                        <input type="date" onChange={(e) => setData(e.target.value)} required placeholder='Insira a data no formato dd/mm/aa' className={styles.inputs} />
                     </label>
                 </div>
                 <div className={styles.div_input}>
