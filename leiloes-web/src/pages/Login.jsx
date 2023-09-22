@@ -42,7 +42,7 @@ const Login = () => {
       console.log(response)
       setData(response)
       
-      handleUser(true, username)
+      handleUser(true, response.name)
     })
     setLoading(false)
   }

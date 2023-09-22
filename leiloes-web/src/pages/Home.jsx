@@ -1,4 +1,5 @@
 import { useState, useContext, useEffect } from 'react'
+
 import { UserContext } from "../context/UserContext"
 
 import Nav from './modules/Nav'
@@ -14,7 +15,7 @@ const Home = () => {
 
     const { handleUser, auth, usuario, setAux } = useContext(UserContext)
 
-    const url = "http://localhost:3000/objects"
+    const url = "http://localhost:8080/leilao"
 
     const [data, setData] = useState([])
 
@@ -35,17 +36,17 @@ const Home = () => {
 
     // removido para entregar da funcionalidade
 
-    // useEffect(() =>{
-    //     async function fetchData(){
-    //     const res = await fetch(url)
+    useEffect(() =>{
+        async function fetchData(){
+        const res = await fetch(url)
         
-    //     const data = await res.json()
+        const dataJson = await res.json()
+        console.log(dataJson.content)
+        setData(dataJson.content)
+        }
+        fetchData()
         
-    //     setData(data)
-    //     }
-    //     fetchData()
-        
-    // },[])
+    },[auth])
 
 
   return (
@@ -77,19 +78,32 @@ const Home = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {data.map((itens) => (
-                            <tr key={itens.id}>
+
+                            {data.map((itens) => (
+                                <tr key={itens.id}>
                                 <td>{itens.name}</td>
-                                <td>{itens.date}</td>
+                                <td>{itens.data}</td>
                                 <td>R$ {itens.price},00</td>
-                                <td>{itens.posted}</td>
-                                {auth === true && itens.username !== usuario ? <td>
+                                <td>{itens.nameUsuario}</td>
+                                <td>
+                                    {auth && itens.nameUsuario == usuario ?
+                                    <>
                                     <button
                                         value={itens.id}
                                         className={styles.lance} 
                                         onClick={handleNavigate} >
-                                        Dar lance</button>
-                                    </td> : <td></td> }
+                                        Meu leilão
+                                    </button>
+                                    </>: auth && itens.nameUsuario != usuario ?
+                                    <>
+                                    <button
+                                        value={itens.id}
+                                        className={styles.lance} 
+                                        onClick={handleNavigate} >
+                                        Dar Lance
+                                    </button>
+                                    </>: <></>}
+                                </td>
                             </tr>
                         ))}
                     </tbody>
