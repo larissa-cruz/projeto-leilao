@@ -1,5 +1,7 @@
 package br.com.leilao.leiloesapi.lance;
 
+import java.time.LocalDateTime;
+
 import jakarta.validation.constraints.NotNull;
 
 public record DadosCadastroLance(
@@ -8,6 +10,8 @@ public record DadosCadastroLance(
     Long idleilao,
 
     @NotNull
-    Double lance) {
+    Double lance,
+    
+    LocalDateTime dataLance) {
     
 }

@@ -2,6 +2,9 @@ package br.com.leilao.leiloesapi.lance;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDateTime;
+import org.hibernate.annotations.CreationTimestamp;
+
 import br.com.leilao.leiloesapi.leilao.Leilao;
 import lombok.*;
 
@@ -22,9 +25,14 @@ public class Lance {
 
     private Double lance;
 
+    @CreationTimestamp
+    @Column(name="datalance", insertable = false, updatable = false)
+    private LocalDateTime dataLance;
+
     public Lance(DadosCadastroLance dadosCadastroLance) {
         this.lance = dadosCadastroLance.lance();
         this.leilao = new Leilao(dadosCadastroLance.idleilao(), null, null, lance, null);
+        this.dataLance = dadosCadastroLance.dataLance();
     }
     
 }
