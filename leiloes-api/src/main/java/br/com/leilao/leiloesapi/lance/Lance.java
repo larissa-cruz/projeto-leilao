@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
 import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import br.com.leilao.leiloesapi.leilao.Leilao;
 import lombok.*;
@@ -27,6 +28,7 @@ public class Lance {
 
     @CreationTimestamp
     @Column(name="datalance", insertable = false, updatable = false)
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     private LocalDateTime dataLance;
 
     public Lance(DadosCadastroLance dadosCadastroLance) {
