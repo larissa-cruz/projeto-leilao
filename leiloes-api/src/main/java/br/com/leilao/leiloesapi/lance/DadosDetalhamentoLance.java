@@ -1,9 +1,11 @@
 package br.com.leilao.leiloesapi.lance;
 
-public record DadosDetalhamentoLance(Long id, Double lance, Long idleilao) {
+import java.time.LocalDateTime;
+
+public record DadosDetalhamentoLance(Long id, Double lance, Long idleilao, LocalDateTime dateLance) {
 
     public DadosDetalhamentoLance(Lance lance) {
-        this(lance.getId(), lance.getLance(), lance.getLeilao().getId());
+        this(lance.getId(), lance.getLance(), lance.getLeilao().getId(), lance.getDataLance());
     }
     
 }
