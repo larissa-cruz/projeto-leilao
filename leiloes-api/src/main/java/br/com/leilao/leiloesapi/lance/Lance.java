@@ -26,7 +26,7 @@ public class Lance {
     private Double lance;
 
     @CreationTimestamp
-    @Column(name="leiloes", insertable = false, updatable = false)
+    @Column(name="datalance", insertable = false, updatable = false)
     private LocalDateTime dataLance;
 
     public Lance(DadosCadastroLance dadosCadastroLance) {
