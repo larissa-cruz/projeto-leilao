@@ -3,7 +3,11 @@ package br.com.leilao.leiloesapi.leilao;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+import br.com.leilao.leiloesapi.lance.Lance;
 import br.com.leilao.leiloesapi.usuario.Usuario;
 import lombok.*;
 
@@ -25,6 +29,10 @@ public class Leilao {
     private String name;
     private Double price;
     private LocalDate data;
+
+    @OneToMany(mappedBy = "leilao")
+    @JsonManagedReference
+    private List<Lance> lances;
 
     public Leilao(DadosCadastroLeilao dadosCadastroLeilao) {
         this.name = dadosCadastroLeilao.name();

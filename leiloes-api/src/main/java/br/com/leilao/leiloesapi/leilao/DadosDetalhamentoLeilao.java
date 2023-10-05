@@ -1,13 +1,18 @@
 package br.com.leilao.leiloesapi.leilao;
 
 import java.time.LocalDate;
+import java.util.List;
 
-public record DadosDetalhamentoLeilao(Long id, Long iduser, String name, Double price, LocalDate data, String nameuser) {
+import br.com.leilao.leiloesapi.lance.Lance;
+
+public record DadosDetalhamentoLeilao(Long idleilao, Long iduser, String name, Double price, LocalDate data, String nameuser, List<Lance> lances) {
 
     public DadosDetalhamentoLeilao(Leilao leilao) {
 
-    this(leilao.getId(), leilao.getUsuario().getId(), leilao.getName(), leilao.getPrice(), leilao.getData(), leilao.getUsuario().getName());
+    this(leilao.getId(), leilao.getUsuario().getId(), leilao.getName(), leilao.getPrice(), leilao.getData(), leilao.getUsuario().getName(), leilao.getLances());
 
     }
+
+
     
 }

@@ -6,6 +6,8 @@ import java.time.LocalDateTime;
 import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import br.com.leilao.leiloesapi.leilao.Leilao;
 import lombok.*;
 
@@ -22,6 +24,7 @@ public class Lance {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "idleilao")
+    @JsonBackReference
     private Leilao leilao;
 
     private Double lance;
@@ -33,7 +36,7 @@ public class Lance {
 
     public Lance(DadosCadastroLance dadosCadastroLance) {
         this.lance = dadosCadastroLance.lance();
-        this.leilao = new Leilao(dadosCadastroLance.idleilao(), null, null, null, null);
+        this.leilao = new Leilao(dadosCadastroLance.idleilao(), null, null, null, null, null);
         this.dataLance = dadosCadastroLance.dataLance();
     }
     
