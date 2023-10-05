@@ -2,6 +2,7 @@ package br.com.leilao.leiloesapi.controllers;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -48,6 +49,14 @@ public class LeilaoController {
 
         return ResponseEntity.ok(leiloes);
 
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<DadosDetalhamentoLeilao> detalharLeilao(@PathVariable Long id) {
+
+        var leilao = leilaoRepository.getReferenceById(id);
+
+        return ResponseEntity.ok(new DadosDetalhamentoLeilao(leilao));
     }
 
     
