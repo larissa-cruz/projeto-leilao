@@ -33,7 +33,7 @@ public class Lance {
 
     public Lance(DadosCadastroLance dadosCadastroLance) {
         this.lance = dadosCadastroLance.lance();
-        this.leilao = new Leilao(dadosCadastroLance.idleilao(), null, null, lance, null);
+        this.leilao = new Leilao(dadosCadastroLance.idleilao(), null, null, null, null);
         this.dataLance = dadosCadastroLance.dataLance();
     }
     
