@@ -7,6 +7,9 @@ import jakarta.validation.constraints.NotNull;
 public record DadosCadastroLance(
 
     @NotNull
+    Long iduser,
+
+    @NotNull
     Long idleilao,
 
     @NotNull

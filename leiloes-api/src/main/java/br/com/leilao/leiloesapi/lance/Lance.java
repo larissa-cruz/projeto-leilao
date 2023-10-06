@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import br.com.leilao.leiloesapi.leilao.Leilao;
-
+import br.com.leilao.leiloesapi.usuario.Usuario;
 import lombok.*;
 
 @Table(name = "lances")
@@ -35,10 +35,16 @@ public class Lance {
     @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDateTime dataLance;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "iduser")
+    @JsonBackReference
+    private Usuario usuario;
+
     public Lance(DadosCadastroLance dadosCadastroLance) {
         this.lance = dadosCadastroLance.lance();
         this.leilao = new Leilao(dadosCadastroLance.idleilao(), null, null, null, null, null);
         this.dataLance = dadosCadastroLance.dataLance();
+        this.usuario = new Usuario(dadosCadastroLance.iduser(), null, null, null);
     }
     
 }

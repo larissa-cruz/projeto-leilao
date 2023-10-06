@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 public record DadosListagemLance(@JsonFormat(pattern = "dd/MM/yyyy") LocalDateTime dataLance, String nomeUsuario, Double lance) {
 
     public DadosListagemLance(Lance lance) {
-        this(lance.getDataLance(), lance.getLeilao().getUsuario().getName(), lance.getLance());
+        this(lance.getDataLance(), lance.getUsuario().getName(), lance.getLance());
     }
     
 }
