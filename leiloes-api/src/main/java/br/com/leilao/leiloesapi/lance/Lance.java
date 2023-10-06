@@ -4,11 +4,12 @@ import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
 import org.hibernate.annotations.CreationTimestamp;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import br.com.leilao.leiloesapi.leilao.Leilao;
+
 import lombok.*;
 
 @Table(name = "lances")
@@ -31,7 +32,7 @@ public class Lance {
 
     @CreationTimestamp
     @Column(name="datalance", insertable = false, updatable = false)
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDateTime dataLance;
 
     public Lance(DadosCadastroLance dadosCadastroLance) {

@@ -30,7 +30,7 @@ public class Leilao {
     private Double price;
     private LocalDate data;
 
-    @OneToMany(mappedBy = "leilao")
+    @OneToMany(mappedBy = "leilao", cascade = CascadeType.ALL)
     @JsonManagedReference
     private List<Lance> lances;
 
