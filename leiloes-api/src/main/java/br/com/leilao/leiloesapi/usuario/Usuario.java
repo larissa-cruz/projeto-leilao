@@ -1,5 +1,7 @@
 package br.com.leilao.leiloesapi.usuario;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -20,6 +22,8 @@ public class Usuario {
 
     private String name;
     private String username;
+    
+    @JsonBackReference
     private String password;
 
     public Usuario(DadosCadastroUsuario dadosCadastroUsuario) {
