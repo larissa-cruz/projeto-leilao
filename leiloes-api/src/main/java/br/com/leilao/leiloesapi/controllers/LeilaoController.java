@@ -54,7 +54,7 @@ public class LeilaoController {
     @GetMapping("/{id}")
     public ResponseEntity<DadosDetalhamentoLeilao> detalharLeilao(@PathVariable Long id) {
 
-        var leilao = leilaoRepository.getReferenceById(id);
+        var leilao = leilaoRepository.findLeilaoComLancesEUsuarios(id);
 
         return ResponseEntity.ok(new DadosDetalhamentoLeilao(leilao));
     }

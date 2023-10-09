@@ -37,7 +37,6 @@ public class Lance {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "iduser")
-    @JsonBackReference
     private Usuario usuario;
 
     public Lance(DadosCadastroLance dadosCadastroLance) {
