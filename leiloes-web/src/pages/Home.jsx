@@ -27,6 +27,7 @@ const Home = () => {
 
     const handleNavigate = (e) =>{
         setAux(e.target.value)
+        console.log(e.target.value)
        navigate("/dar-novo-lance") 
     }
 

@@ -10,7 +10,7 @@ import Unautorized from './Unautorized'
 
 const Lance = () => {
 
-    const { handleUser, auth, usuario, aux } = useContext(UserContext)
+    const { handleUser, auth, data:dataUser, aux, usuario } = useContext(UserContext)
 
     const navigate = useNavigate()
 
@@ -19,7 +19,7 @@ const Lance = () => {
     // const [load, setLoad] = useState()
     const [historyc, setHistoryc] = useState()
  
-    const url = `http://localhost:3000/objects/${aux}?_embed=lances`
+    const url = `http://localhost:8080/leilao/${aux}`
 
     const logOut = () =>{
         handleUser(false, "")
@@ -30,24 +30,26 @@ const Lance = () => {
         navigate("/")
     }
 
-    const search = () =>{
-        async function fetchData(){
-            const res = await fetch(url)
-            
-            const data = await res.json()
-            setData(data)
-            setLance(data.price)
-            setHistoryc(data.lances)
-            }
+    // const search = async() =>{
         
-            fetchData()
-    }
+    //     const res = await fetch(url)
+        
+    //     const data = await res.json()
+    //     console.log("search")
+    //     console.log(data)
+    //     setData(data.content)
+    //     setLance(data.price)
+    //     setHistoryc(data.lances)
+        
+    // }
 
     useEffect(() =>{
         async function fetchData(){
         const res = await fetch(url)
         
         const data = await res.json()
+        console.log("useEffect")
+        console.log(data)
         setData(data)
         setLance(data.price)
         setHistoryc(data.lances)
@@ -60,19 +62,19 @@ const Lance = () => {
     const handleSubmit = async(e) =>{
         e.preventDefault();
 
-        const hoje = new Date()
+        // const hoje = new Date()
 
-        const dataPost = `${hoje.getDate()}/${hoje.getMonth()}/${hoje.getFullYear()}`
+        // const dataPost = `${hoje.getDate()}/${hoje.getMonth()}/${hoje.getFullYear()}`
         
         const lanceData = {
-            "objectId" : parseInt(aux),
-            "name" : usuario, 
+            "idleilao" : parseInt(aux),
+            "iduser" : dataUser.id,
             "lance" : parseInt(lance),
-            dataPost
+            // dataPost
         }
         console.log(lanceData)
         console.log(historyc)
-        await fetch("http://localhost:3000/lances",{
+        await fetch("http://localhost:8080/lance",{
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -83,7 +85,7 @@ const Lance = () => {
           }).catch((error) => {
             console.log(error)
           })
-          search()
+        //   search()
     }
 
   return (
@@ -107,13 +109,16 @@ const Lance = () => {
             </header>
             <div className={styles.container}>
                 <section className={styles.details}>
-                    {data && <div>
+                    {data && 
+                        <div>
                         <h1>{data.name}</h1>
                         <p>{data.price},00</p>
-                        <p>{data.username}, {data.date}</p>
+                        <p>{data.nameUser}, {data.data}</p>
                     </div>}
                 </section>
             </div>
+            {data && data.nameUser === usuario ? <>
+            </> : <>
             <form onSubmit={handleSubmit} className={styles.form}>
                 <label>
                     <span>Novo Lance:</span>
@@ -121,6 +126,7 @@ const Lance = () => {
                 </label>
                 <input type="submit" value="Enviar" className={styles.btn_lance} />
             </form>
+            </>}
             <div className={styles.info_lance}>
                 <h1>Lances Dados</h1>
                 <hr />
@@ -132,9 +138,9 @@ const Lance = () => {
                     </ul>
                     {historyc.map((itens) => (
                         <ul>
-                            <li className={styles.info_lance_li_bottom}>{itens.dataPost}</li>
-                            <li className={styles.info_lance_li_bottom}>{itens.name}</li>
-                            <li className={styles.info_lance_li_bottom}>{itens.lance}</li>
+                            <li className={styles.info_lance_li_bottom}>{itens.dataLance}</li>
+                            <li className={styles.info_lance_li_bottom}>{itens.usuario.name}</li>
+                            <li className={styles.info_lance_li_bottom}>R${itens.lance},00</li>
                         </ul>
                     ))}    
                 </section>:
