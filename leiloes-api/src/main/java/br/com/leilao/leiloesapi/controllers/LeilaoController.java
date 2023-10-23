@@ -1,6 +1,7 @@
 package br.com.leilao.leiloesapi.controllers;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -58,6 +59,17 @@ public class LeilaoController {
 
         return ResponseEntity.ok(new DadosDetalhamentoLeilao(leilao));
     }
+
+    @DeleteMapping("/{id}")
+    @Transactional
+    public ResponseEntity<Void> excluirLeilao(@PathVariable Long id) {
+
+        leilaoRepository.deleteById(id);
+
+        return ResponseEntity.noContent().build();
+
+    }
+
 
     
 }

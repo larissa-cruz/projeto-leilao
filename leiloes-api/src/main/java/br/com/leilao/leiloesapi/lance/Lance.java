@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -26,6 +28,7 @@ public class Lance {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "idleilao")
     @JsonBackReference
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Leilao leilao;
 
     private Double lance;
