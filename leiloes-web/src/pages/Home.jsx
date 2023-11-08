@@ -87,7 +87,7 @@ const Home = () => {
                                 <td>R$ {itens.price},00</td>
                                 <td>{itens.nameUsuario}</td>
                                 <td>
-                                    {auth && itens.nameUsuario == usuario ?
+                                    {auth && itens.nameUsuario === usuario ?
                                     <>
                                     <button
                                         value={itens.id}
@@ -95,7 +95,7 @@ const Home = () => {
                                         onClick={handleNavigate} >
                                         Meu leilão
                                     </button>
-                                    </>: auth && itens.nameUsuario != usuario ?
+                                    </>: auth && itens.nameUsuario !== usuario ?
                                     <>
                                     <button
                                         value={itens.id}

@@ -89,6 +89,21 @@ const Lance = () => {
 
     const deleteItem = async() =>{
         console.log(aux)
+        const deleteUrl = `http://localhost:8080/leilao/${aux}`
+        await fetch(deleteUrl,{
+            method: "DELETE",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }).then((res) => {
+            if(res.status === 200 || res.status === 204) {
+                alert("Deletado com sucesso")
+                navigate("/")
+            }
+            return res.json()
+          }).catch((error) => {
+            console.log(error)
+          })
     }
 
   return (
