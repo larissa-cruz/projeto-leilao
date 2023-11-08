@@ -48,7 +48,6 @@ const Lance = () => {
         const res = await fetch(url)
         
         const data = await res.json()
-        console.log("useEffect")
         console.log(data)
         setData(data)
         setLance(data.price)
@@ -86,6 +85,10 @@ const Lance = () => {
             console.log(error)
           })
         //   search()
+    }
+
+    const deleteItem = async() =>{
+        console.log(aux)
     }
 
   return (
@@ -150,6 +153,10 @@ const Lance = () => {
             </div>
             <div className={styles.div_back}>
                 <input type="button" value="Voltar" onClick={backPage} className={styles.btn_submit} />
+                {data && data.nameUser === usuario ? <input type="button" value="Excluir" onClick={deleteItem} className={styles.btn_submit} />
+                :
+                <></>}
+                
             </div>
         </main>
         </>

@@ -122,5 +122,7 @@
 
 .div_back{
     width: 60%;
+    display: flex;
     text-align: initial;
+    justify-content: space-between;
 }
