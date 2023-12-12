@@ -1,5 +1,7 @@
 package br.com.leilao.leiloesapi.controllers;
 
+import br.com.leilao.leiloesapi.dtos.UsuarioDTO;
+import br.com.leilao.leiloesapi.services.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
@@ -8,13 +10,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.util.UriComponentsBuilder;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import br.com.leilao.leiloesapi.usuario.DadosCadastroUsuario;
-import br.com.leilao.leiloesapi.usuario.DadosDetalhamentoUsuario;
-import br.com.leilao.leiloesapi.usuario.Usuario;
-import br.com.leilao.leiloesapi.usuario.UsuarioRepository;
+import br.com.leilao.leiloesapi.dtos.UsuarioDetalhamentoDTO;
 import jakarta.validation.Valid;
+
+import java.net.URI;
 
 @CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
 @RestController
@@ -22,18 +23,21 @@ import jakarta.validation.Valid;
 public class UsuarioController {
 
     @Autowired
-    private UsuarioRepository usuarioRepository;
+    private UsuarioService usuarioService;
 
     @PostMapping
     @Transactional
-    public ResponseEntity<DadosDetalhamentoUsuario> cadastrarUsuario(@RequestBody @Valid DadosCadastroUsuario dadosCadastroUsuario, UriComponentsBuilder uriBuilder) {
+    public ResponseEntity<UsuarioDetalhamentoDTO> cadastrarUsuario(@RequestBody @Valid UsuarioDTO usuarioDTO) {
+
+        usuarioService.insert(usuarioDTO);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
+                .buildAndExpand(usuarioDTO.getId()).toUri();
+        return ResponseEntity.created(uri).body(new UsuarioDetalhamentoDTO(usuarioDTO));
         
-        var usuario = new Usuario(dadosCadastroUsuario);
-        usuarioRepository.save(usuario);
-
-        var uri = uriBuilder.path("/usuario/{id}").buildAndExpand(usuario.getId()).toUri();
-
-        return ResponseEntity.created(uri).body(new DadosDetalhamentoUsuario(usuario));
+        //var usuario = new Usuario(dadosCadastroUsuario);
+        //usuarioRepository.save(usuario);
+        //var uri = uriBuilder.path("/usuario/{id}").buildAndExpand(usuario.getId()).toUri();
+        //return ResponseEntity.created(uri).body(new UsuarioDetalhamentoDTO(usuario));
     }
     
 }

@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.transaction.annotation.Transactional;
 
-import br.com.leilao.leiloesapi.usuario.Usuario;
-import br.com.leilao.leiloesapi.usuario.UsuarioRepository;
+import br.com.leilao.leiloesapi.entities.Usuario;
+import br.com.leilao.leiloesapi.repositories.UsuarioRepository;
 
 
 @CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
