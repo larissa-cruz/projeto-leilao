@@ -26,18 +26,13 @@ public class UsuarioController {
     private UsuarioService usuarioService;
 
     @PostMapping
-    @Transactional
     public ResponseEntity<UsuarioDetalhamentoDTO> cadastrarUsuario(@RequestBody @Valid UsuarioDTO usuarioDTO) {
 
         usuarioService.insert(usuarioDTO);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
                 .buildAndExpand(usuarioDTO.getId()).toUri();
         return ResponseEntity.created(uri).body(new UsuarioDetalhamentoDTO(usuarioDTO));
-        
-        //var usuario = new Usuario(dadosCadastroUsuario);
-        //usuarioRepository.save(usuario);
-        //var uri = uriBuilder.path("/usuario/{id}").buildAndExpand(usuario.getId()).toUri();
-        //return ResponseEntity.created(uri).body(new UsuarioDetalhamentoDTO(usuario));
+
     }
     
 }

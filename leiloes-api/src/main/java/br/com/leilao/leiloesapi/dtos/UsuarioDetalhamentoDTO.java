@@ -1,9 +1,22 @@
 package br.com.leilao.leiloesapi.dtos;
 
-public record UsuarioDetalhamentoDTO(Long id, String name, String username) {
+import br.com.leilao.leiloesapi.entities.Usuario;
+import jakarta.validation.constraints.NotBlank;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 
-    public UsuarioDetalhamentoDTO(UsuarioDTO usuarioDTO) {
-        this(usuarioDTO.getId(), usuarioDTO.getName(), usuarioDTO.getUsername());
+@AllArgsConstructor
+@Getter
+public class UsuarioDetalhamentoDTO {
+    private Long id;
+    private String name;
+    private String username;
+
+    public UsuarioDetalhamentoDTO(UsuarioDTO dto) {
+        id = dto.getId();
+        name = dto.getName();
+        username = dto.getUsername();
     }
-    
+
+
 }

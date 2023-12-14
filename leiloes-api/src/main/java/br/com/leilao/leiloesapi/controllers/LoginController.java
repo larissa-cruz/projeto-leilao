@@ -1,5 +1,8 @@
 package br.com.leilao.leiloesapi.controllers;
 
+import br.com.leilao.leiloesapi.dtos.UsuarioDTO;
+import br.com.leilao.leiloesapi.dtos.UsuarioLoginDTO;
+import br.com.leilao.leiloesapi.services.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,12 +23,12 @@ import br.com.leilao.leiloesapi.repositories.UsuarioRepository;
 public class LoginController {
 
     @Autowired
-    private UsuarioRepository usuarioRepository;
+    private UsuarioService usuarioService;
 
     @PostMapping
-    @Transactional
-    public ResponseEntity<Usuario> loginUsuario(@RequestBody Usuario usuario) {
-        Usuario usuarioLogado = this.usuarioRepository.findByUsernameAndPassword(usuario.getUsername(), usuario.getPassword());
+    public ResponseEntity<UsuarioLoginDTO> loginUsuario(@RequestBody UsuarioLoginDTO usuarioLoginDTO) {
+
+        UsuarioLoginDTO usuarioLogado = usuarioService.login(usuarioLoginDTO);
 
         if (usuarioLogado != null) {
             return ResponseEntity.ok(usuarioLogado);
