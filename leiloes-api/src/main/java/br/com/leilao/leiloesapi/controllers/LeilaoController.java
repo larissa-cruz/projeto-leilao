@@ -16,11 +16,11 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import jakarta.validation.Valid;
-import br.com.leilao.leiloesapi.leilao.Leilao;
-import br.com.leilao.leiloesapi.leilao.LeilaoRepository;
-import br.com.leilao.leiloesapi.leilao.DadosCadastroLeilao;
-import br.com.leilao.leiloesapi.leilao.DadosDetalhamentoLeilao;
-import br.com.leilao.leiloesapi.leilao.DadosListagemLeilao;
+import br.com.leilao.leiloesapi.entities.Leilao;
+import br.com.leilao.leiloesapi.repositories.LeilaoRepository;
+import br.com.leilao.leiloesapi.dtos.DadosCadastroLeilao;
+import br.com.leilao.leiloesapi.dtos.DadosDetalhamentoLeilao;
+import br.com.leilao.leiloesapi.dtos.DadosListagemLeilao;
 
 @CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
 @RestController

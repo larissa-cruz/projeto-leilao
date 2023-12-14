@@ -14,12 +14,12 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 import org.springframework.transaction.annotation.Transactional;
 
-import br.com.leilao.leiloesapi.lance.DadosCadastroLance;
-import br.com.leilao.leiloesapi.lance.DadosDetalhamentoLance;
-import br.com.leilao.leiloesapi.lance.DadosListagemLance;
-import br.com.leilao.leiloesapi.lance.LanceRepository;
+import br.com.leilao.leiloesapi.dtos.DadosCadastroLance;
+import br.com.leilao.leiloesapi.dtos.DadosDetalhamentoLance;
+import br.com.leilao.leiloesapi.dtos.DadosListagemLance;
+import br.com.leilao.leiloesapi.repositories.LanceRepository;
 import jakarta.validation.Valid;
-import br.com.leilao.leiloesapi.lance.Lance;
+import br.com.leilao.leiloesapi.entities.Lance;
 
 @CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
 @RestController

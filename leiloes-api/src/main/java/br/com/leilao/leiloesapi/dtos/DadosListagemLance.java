@@ -1,8 +1,9 @@
-package br.com.leilao.leiloesapi.lance;
+package br.com.leilao.leiloesapi.dtos;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+import br.com.leilao.leiloesapi.entities.Lance;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 public record DadosListagemLance(@JsonFormat(pattern = "dd/MM/yyyy") LocalDateTime dataLance, String nomeUsuario, Double lance, String nameleilao, String donoleilao, @JsonFormat(pattern = "dd/MM/yyyy") LocalDate dataleilao) {

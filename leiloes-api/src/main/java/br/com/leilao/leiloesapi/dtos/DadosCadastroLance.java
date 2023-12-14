@@ -1,4 +1,4 @@
-package br.com.leilao.leiloesapi.lance;
+package br.com.leilao.leiloesapi.dtos;
 
 import java.time.LocalDateTime;
 

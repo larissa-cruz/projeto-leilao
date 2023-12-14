@@ -1,5 +1,6 @@
-package br.com.leilao.leiloesapi.lance;
+package br.com.leilao.leiloesapi.entities;
 
+import br.com.leilao.leiloesapi.dtos.DadosCadastroLance;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
@@ -10,12 +11,10 @@ import org.hibernate.annotations.OnDeleteAction;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-import br.com.leilao.leiloesapi.leilao.Leilao;
-import br.com.leilao.leiloesapi.usuario.Usuario;
 import lombok.*;
 
 @Table(name = "lances")
-@Entity(name = "Lances")
+@Entity
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
