@@ -27,5 +27,4 @@ public class UsuarioDTO {
         password = entity.getPassword();
     }
 
-
 }

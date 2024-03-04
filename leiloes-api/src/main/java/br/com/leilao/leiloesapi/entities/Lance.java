@@ -1,6 +1,5 @@
 package br.com.leilao.leiloesapi.entities;
 
-import br.com.leilao.leiloesapi.dtos.DadosCadastroLance;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
@@ -16,6 +15,7 @@ import lombok.*;
 @Table(name = "lances")
 @Entity
 @Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
@@ -23,12 +23,6 @@ public class Lance {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idleilao")
-    @JsonBackReference
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    private Leilao leilao;
 
     private Double lance;
 
@@ -38,14 +32,14 @@ public class Lance {
     private LocalDateTime dataLance;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "iduser")
+    @JoinColumn(name = "leilao_id")
+    @JsonBackReference
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private Leilao leilao;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "usuario_id")
     private Usuario usuario;
 
-    public Lance(DadosCadastroLance dadosCadastroLance) {
-        this.lance = dadosCadastroLance.lance();
-        this.leilao = new Leilao(dadosCadastroLance.idleilao(), null, null, null, null, null);
-        this.dataLance = dadosCadastroLance.dataLance();
-        this.usuario = new Usuario(dadosCadastroLance.iduser(), null, null, null);
-    }
     
 }

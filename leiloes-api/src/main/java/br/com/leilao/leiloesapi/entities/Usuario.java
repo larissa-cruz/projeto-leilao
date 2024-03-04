@@ -5,6 +5,9 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Table(name = "usuarios")
 @Entity
 @Getter
@@ -21,5 +24,11 @@ public class Usuario {
     private String username;
     @JsonBackReference
     private String password;
+
+    @OneToMany(mappedBy = "usuario")
+    private List<Leilao> leiloes = new ArrayList<>();
+
+    @OneToMany(mappedBy = "usuario")
+    private List<Lance> lances = new ArrayList<>();
 
 }
