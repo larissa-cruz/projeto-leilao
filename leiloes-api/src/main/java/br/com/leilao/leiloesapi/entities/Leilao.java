@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
 @Table(name = "leiloes")
-@Entity
+@Entity(name = "Leiloes")
 @Getter
 @Setter
 @NoArgsConstructor

@@ -13,7 +13,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 
 @Table(name = "lances")
-@Entity
+@Entity(name = "Lances")
 @Getter
 @Setter
 @NoArgsConstructor
