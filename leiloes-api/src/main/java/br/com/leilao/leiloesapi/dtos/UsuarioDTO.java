@@ -1,5 +1,7 @@
 package br.com.leilao.leiloesapi.dtos;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import br.com.leilao.leiloesapi.entities.Usuario;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;

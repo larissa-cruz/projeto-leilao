@@ -10,8 +10,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-
-import br.com.leilao.leiloesapi.dtos.UsuarioDetalhamentoDTO;
 import jakarta.validation.Valid;
 
 import java.net.URI;
@@ -25,12 +23,12 @@ public class UsuarioController {
     private UsuarioService usuarioService;
 
     @PostMapping
-    public ResponseEntity<UsuarioDetalhamentoDTO> cadastrarUsuario(@RequestBody @Valid UsuarioDTO usuarioDTO) {
+    public ResponseEntity<UsuarioDTO> cadastrarUsuario(@RequestBody @Valid UsuarioDTO usuarioDTO) {
 
         usuarioService.insert(usuarioDTO);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
                 .buildAndExpand(usuarioDTO.getId()).toUri();
-        return ResponseEntity.created(uri).body(new UsuarioDetalhamentoDTO(usuarioDTO));
+        return ResponseEntity.created(uri).body(usuarioDTO);
 
     }
     
