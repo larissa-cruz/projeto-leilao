@@ -25,10 +25,10 @@ public class Usuario {
     @JsonBackReference
     private String password;
 
-    @OneToMany(mappedBy = "usuario")
-    private List<Leilao> leiloes = new ArrayList<>();
+    // @OneToMany(mappedBy = "usuario", fetch = FetchType.EAGER)
+    // private List<Leilao> leiloes = new ArrayList<>();
 
-    @OneToMany(mappedBy = "usuario")
-    private List<Lance> lances = new ArrayList<>();
+    // @OneToMany(mappedBy = "usuario", fetch = FetchType.EAGER)
+    // private List<Lance> lances = new ArrayList<>();
 
 }

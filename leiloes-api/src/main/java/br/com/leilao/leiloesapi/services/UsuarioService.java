@@ -24,15 +24,15 @@ public class UsuarioService {
 
     @Transactional
     public UsuarioLoginDTO login(UsuarioLoginDTO dto) {
-        Usuario entity = usuarioRepository.findByUsernameAndPassword(dto.getUsername(), dto.getPassword());
+        Usuario entity = usuarioRepository.findByUsernameAndPassword(dto.username(), dto.password());
         return new UsuarioLoginDTO(entity);
     }
 
 
     private void copyDtoToEntity(UsuarioDTO dto, Usuario entity) {
-        entity.setName(dto.getName());
-        entity.setUsername(dto.getUsername());
-        entity.setPassword(dto.getPassword());
+        entity.setName(dto.name());
+        entity.setUsername(dto.username());
+        entity.setPassword(dto.password());
     }
 
 }

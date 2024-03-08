@@ -40,11 +40,11 @@ public class LanceService {
 
 
     private void copyDtoToEntity(LanceDTO dto, Lance entity) {
-        entity.setLance(dto.getLance());
-        entity.setUsuario(usuarioRepository.findById(dto.getIduser())
-                .orElseThrow(() -> new RuntimeException("Usuário não encontrado com o ID: " + dto.getIduser())));
-        entity.setLeilao(leilaoRepository.findById(dto.getIdleilao())
-                .orElseThrow(() -> new RuntimeException("Leilão/Produto não encontrado com o ID: " + dto.getIdleilao())));
+        entity.setLance(dto.lance());
+        entity.setUsuario(usuarioRepository.findById(dto.iduser())
+                .orElseThrow(() -> new RuntimeException("Usuário não encontrado com o ID: " + dto.iduser())));
+        entity.setLeilao(leilaoRepository.findById(dto.idleilao())
+                .orElseThrow(() -> new RuntimeException("Leilão/Produto não encontrado com o ID: " + dto.idleilao())));
     }
 
 }

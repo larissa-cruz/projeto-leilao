@@ -48,11 +48,11 @@ public class LeilaoService {
     }
 
     private void copyDtoToEntity(LeilaoDTO dto, Leilao entity) {
-        entity.setName(dto.getName());
-        entity.setPrice(dto.getPrice());
-        entity.setData(dto.getData());
-        entity.setUsuario(usuarioRepository.findById(dto.getIduser())
-                .orElseThrow(() -> new RuntimeException("Usuário não encontrado com o ID: " + dto.getIduser())));
+        entity.setName(dto.name());
+        entity.setPrice(dto.price());
+        entity.setData(dto.data());
+        entity.setUsuario(usuarioRepository.findById(dto.iduser())
+                .orElseThrow(() -> new RuntimeException("Usuário não encontrado com o ID: " + dto.iduser())));
     }
 
 }

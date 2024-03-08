@@ -31,7 +31,7 @@ public class LanceController {
     public ResponseEntity<LanceDTO> cadastrarLance(@RequestBody @Valid LanceDTO lanceDTO) {
         lanceDTO = lanceService.insert(lanceDTO);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-                .buildAndExpand(lanceDTO.getId()).toUri();
+                .buildAndExpand(lanceDTO.id()).toUri();
         return ResponseEntity.created(uri).body(lanceDTO);
     }
 

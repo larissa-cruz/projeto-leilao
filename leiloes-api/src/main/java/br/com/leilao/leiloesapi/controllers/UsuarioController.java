@@ -27,7 +27,7 @@ public class UsuarioController {
 
         usuarioService.insert(usuarioDTO);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-                .buildAndExpand(usuarioDTO.getId()).toUri();
+                .buildAndExpand(usuarioDTO.id()).toUri();
         return ResponseEntity.created(uri).body(usuarioDTO);
 
     }

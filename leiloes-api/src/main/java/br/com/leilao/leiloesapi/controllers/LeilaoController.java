@@ -34,7 +34,7 @@ public class LeilaoController {
     public ResponseEntity<LeilaoDTO> cadastrarLeilao(@RequestBody @Valid LeilaoDTO leilaoDTO) {
         leilaoDTO = leilaoService.insert(leilaoDTO);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-                .buildAndExpand(leilaoDTO.getId()).toUri();
+                .buildAndExpand(leilaoDTO.id()).toUri();
         return ResponseEntity.created(uri).body(leilaoDTO);
     }
 
