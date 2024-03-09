@@ -32,10 +32,10 @@ public class LeilaoController {
 
     @PostMapping
     public ResponseEntity<LeilaoDTO> cadastrarLeilao(@RequestBody @Valid LeilaoDTO leilaoDTO) {
-        leilaoDTO = leilaoService.insert(leilaoDTO);
+        LeilaoDTO savedLeilao = leilaoService.insert(leilaoDTO);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
                 .buildAndExpand(leilaoDTO.id()).toUri();
-        return ResponseEntity.created(uri).body(leilaoDTO);
+        return ResponseEntity.created(uri).body(savedLeilao);
     }
 
     @GetMapping

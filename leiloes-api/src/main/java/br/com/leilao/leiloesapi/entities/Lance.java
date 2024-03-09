@@ -27,7 +27,7 @@ public class Lance {
     private Double lance;
 
     @CreationTimestamp
-    @Column(name="datalance", insertable = false, updatable = false)
+    @Column(name="datalance", insertable = false, updatable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
     @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDateTime dataLance;
 

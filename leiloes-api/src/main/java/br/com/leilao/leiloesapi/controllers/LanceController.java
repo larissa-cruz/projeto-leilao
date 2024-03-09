@@ -29,10 +29,10 @@ public class LanceController {
 
     @PostMapping
     public ResponseEntity<LanceDTO> cadastrarLance(@RequestBody @Valid LanceDTO lanceDTO) {
-        lanceDTO = lanceService.insert(lanceDTO);
+        LanceDTO savedLance = lanceService.insert(lanceDTO);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
                 .buildAndExpand(lanceDTO.id()).toUri();
-        return ResponseEntity.created(uri).body(lanceDTO);
+        return ResponseEntity.created(uri).body(savedLance);
     }
 
     @GetMapping
