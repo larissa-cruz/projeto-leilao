@@ -1,35 +1,34 @@
-package br.com.leilao.leiloesapi.usuario;
+package br.com.leilao.leiloesapi.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
+
+// import java.util.ArrayList;
+// import java.util.List;
 
 @Table(name = "usuarios")
 @Entity(name = "Usuario")
 @Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
 public class Usuario {
 
-
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String name;
+    @Column(unique = true)
     private String username;
-    
     @JsonBackReference
     private String password;
 
-    public Usuario(DadosCadastroUsuario dadosCadastroUsuario) {
-        this.name = dadosCadastroUsuario.name();
-        this.username = dadosCadastroUsuario.username();
-        this.password = dadosCadastroUsuario.password();
-    }
-    
+    // @OneToMany(mappedBy = "usuario", fetch = FetchType.EAGER)
+    // private List<Leilao> leiloes = new ArrayList<>();
+
+    // @OneToMany(mappedBy = "usuario", fetch = FetchType.EAGER)
+    // private List<Lance> lances = new ArrayList<>();
+
 }

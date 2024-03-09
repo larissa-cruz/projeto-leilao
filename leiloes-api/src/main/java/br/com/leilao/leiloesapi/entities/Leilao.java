@@ -1,19 +1,19 @@
-package br.com.leilao.leiloesapi.leilao;
+package br.com.leilao.leiloesapi.entities;
 
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
-import br.com.leilao.leiloesapi.lance.Lance;
-import br.com.leilao.leiloesapi.usuario.Usuario;
 import lombok.*;
 
 @Table(name = "leiloes")
 @Entity(name = "Leiloes")
 @Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
@@ -21,25 +21,17 @@ public class Leilao {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "iduser")
-    private Usuario usuario;
-
     private String name;
     private Double price;
     private LocalDate data;
 
+    @ManyToOne
+    @JoinColumn(name = "usuario_id")
+    private Usuario usuario;
+
     @OneToMany(mappedBy = "leilao", cascade = CascadeType.ALL)
     @JsonManagedReference
-    private List<Lance> lances;
+    private List<Lance> lances = new ArrayList<>();
 
-    public Leilao(DadosCadastroLeilao dadosCadastroLeilao) {
-        this.name = dadosCadastroLeilao.name();
-        this.price = dadosCadastroLeilao.price();
-        this.data = dadosCadastroLeilao.data();
-        this.usuario = new Usuario(dadosCadastroLeilao.iduser(), null, null, null);
-
-    }
     
 }

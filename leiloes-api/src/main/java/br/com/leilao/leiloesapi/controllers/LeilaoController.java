@@ -1,5 +1,8 @@
 package br.com.leilao.leiloesapi.controllers;
 
+import br.com.leilao.leiloesapi.dtos.LeilaoDTO;
+import br.com.leilao.leiloesapi.dtos.LeilaoDetalhamentoDTO;
+import br.com.leilao.leiloesapi.services.LeilaoService;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,19 +11,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.util.UriComponentsBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
-import org.springframework.transaction.annotation.Transactional;
 import jakarta.validation.Valid;
-import br.com.leilao.leiloesapi.leilao.Leilao;
-import br.com.leilao.leiloesapi.leilao.LeilaoRepository;
-import br.com.leilao.leiloesapi.leilao.DadosCadastroLeilao;
-import br.com.leilao.leiloesapi.leilao.DadosDetalhamentoLeilao;
-import br.com.leilao.leiloesapi.leilao.DadosListagemLeilao;
+import br.com.leilao.leiloesapi.dtos.LeilaoListagemDTO;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
+import java.net.URI;
 
 @CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
 @RestController
@@ -28,48 +28,32 @@ import br.com.leilao.leiloesapi.leilao.DadosListagemLeilao;
 public class LeilaoController {
 
     @Autowired
-    private LeilaoRepository leilaoRepository;
+    private LeilaoService leilaoService;
 
     @PostMapping
-    @Transactional
-    public ResponseEntity<DadosDetalhamentoLeilao> cadastrarLeilao(@RequestBody @Valid DadosCadastroLeilao dadosCadastroLeilao, UriComponentsBuilder uriBuilder) {
-
-        var leilao = new Leilao(dadosCadastroLeilao);
-        leilaoRepository.save(leilao);
-
-        var uri = uriBuilder.path("/leilao/{id}").buildAndExpand(leilao.getId()).toUri();
-
-        return ResponseEntity.created(uri).body(new DadosDetalhamentoLeilao(leilao));
-
+    public ResponseEntity<LeilaoDTO> cadastrarLeilao(@RequestBody @Valid LeilaoDTO leilaoDTO) {
+        LeilaoDTO savedLeilao = leilaoService.insert(leilaoDTO);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
+                .buildAndExpand(leilaoDTO.id()).toUri();
+        return ResponseEntity.created(uri).body(savedLeilao);
     }
 
     @GetMapping
-    public ResponseEntity<Page<DadosListagemLeilao>> listarLeiloes(@PageableDefault(size = 10) Pageable paginacao) {
-
-        var leiloes = leilaoRepository.findAll(paginacao).map(DadosListagemLeilao::new);
-
-        return ResponseEntity.ok(leiloes);
-
+    public ResponseEntity<Page<LeilaoListagemDTO>> listarLeiloes(@PageableDefault(size = 10) Pageable paginacao) {
+        Page<LeilaoListagemDTO> dto = leilaoService.findAll(paginacao);
+        return ResponseEntity.ok(dto);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<DadosDetalhamentoLeilao> detalharLeilao(@PathVariable Long id) {
-
-        var leilao = leilaoRepository.findLeilaoComLancesEUsuarios(id);
-
-        return ResponseEntity.ok(new DadosDetalhamentoLeilao(leilao));
+    @GetMapping(value = "/{id}")
+    public ResponseEntity<LeilaoDetalhamentoDTO> detalharLeilao(@PathVariable Long id) {
+        LeilaoDetalhamentoDTO dto = leilaoService.findById(id);
+        return ResponseEntity.ok(dto);
     }
 
-    @DeleteMapping("/{id}")
-    @Transactional
-    public ResponseEntity<Void> excluirLeilao(@PathVariable Long id) {
-
-        leilaoRepository.deleteById(id);
-
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
+        leilaoService.delete(id);
         return ResponseEntity.noContent().build();
-
     }
-
-
     
 }
