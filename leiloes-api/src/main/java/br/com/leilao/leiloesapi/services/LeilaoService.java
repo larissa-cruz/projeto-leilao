@@ -6,6 +6,8 @@ import br.com.leilao.leiloesapi.dtos.LeilaoListagemDTO;
 import br.com.leilao.leiloesapi.entities.Leilao;
 import br.com.leilao.leiloesapi.repositories.LeilaoRepository;
 import br.com.leilao.leiloesapi.repositories.UsuarioRepository;
+import br.com.leilao.leiloesapi.services.exceptions.ResourceNotFoundException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -44,7 +46,11 @@ public class LeilaoService {
 
     @Transactional(propagation = Propagation.SUPPORTS)
     public void delete(Long id) {
+        if (!leilaoRepository.existsById(id)) {
+            throw new ResourceNotFoundException("Recurso não encontrado");
+        } else {
             leilaoRepository.deleteById(id);
+        }
     }
 
     private void copyDtoToEntity(LeilaoDTO dto, Leilao entity) {
