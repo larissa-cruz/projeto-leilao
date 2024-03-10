@@ -51,7 +51,7 @@ public class LeilaoController {
     }
 
     @DeleteMapping(value = "/{id}")
-    public ResponseEntity<Void> delete(@PathVariable Long id) {
+    public ResponseEntity<Void> deletarLeilao(@PathVariable Long id) {
         leilaoService.delete(id);
         return ResponseEntity.noContent().build();
     }
