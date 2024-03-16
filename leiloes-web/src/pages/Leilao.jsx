@@ -34,12 +34,18 @@ const Leilao = () => {
         e.preventDefault()
 
         const url = "http://localhost:8080/leilao"
+        const newdata = new Date(data);
+        const dia = newdata.getDate() + 1;
+        const mes = newdata.getMonth() + 1;
+        const ano = newdata.getFullYear();
+        const dataFormatada = `${dia.toString().padStart(2, '0')}/${mes.toString().padStart(2, '0')}/${ano}`;
 
+        console.log(dataFormatada)
         const info = {
             name,
-            data,
-            price,
-            "iduser" : dataUser.id
+            "data" : dataFormatada,
+            "price" : parseFloat(price),
+            "iduser" : parseInt(dataUser.id)
         }
         console.log(info)
         await fetch(url,{
