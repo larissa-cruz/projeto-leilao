@@ -71,7 +71,8 @@ Os demais usuários, previamente cadastrados em sistema, poderão dar lances nos
 
 ## Diagrama de Classes
 
-![DiagramaDeClassesSistemaLeilao](https://github.com/larissa-cruz/projeto-leilao/assets/104517707/b8a27483-bd3c-4e9e-a074-4ba7c201d1a4)
+![DiagramaDeClassesLeilao](https://github.com/larissa-cruz/projeto-leilao/assets/104517707/e9bbe077-b920-4ce0-89dc-ade022a33e4c)
+
 
 ## Diagrama de Casos de Uso
 
