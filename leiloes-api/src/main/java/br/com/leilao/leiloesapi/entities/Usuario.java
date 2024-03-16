@@ -5,9 +5,6 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 
-// import java.util.ArrayList;
-// import java.util.List;
-
 @Table(name = "usuarios")
 @Entity(name = "Usuario")
 @Getter
@@ -25,10 +22,5 @@ public class Usuario {
     @JsonBackReference
     private String password;
 
-    // @OneToMany(mappedBy = "usuario", fetch = FetchType.EAGER)
-    // private List<Leilao> leiloes = new ArrayList<>();
-
-    // @OneToMany(mappedBy = "usuario", fetch = FetchType.EAGER)
-    // private List<Lance> lances = new ArrayList<>();
 
 }
