@@ -67,7 +67,7 @@ const Lance = () => {
         
         const lanceData = {
             "idleilao" : parseInt(aux),
-            "iduser" : dataUser.id,
+            "iduser" : parseInt(dataUser.id),
             "lance" : parseInt(lance),
             // dataPost
         }
