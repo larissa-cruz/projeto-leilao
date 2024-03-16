@@ -26,7 +26,7 @@ public class LoginController {
         UsuarioLoginDTO usuarioLogado = usuarioService.login(usuarioLoginDTO);
 
         if (usuarioLogado != null) {
-            return ResponseEntity.ok().build();
+            return ResponseEntity.ok(usuarioLogado);
         } else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
