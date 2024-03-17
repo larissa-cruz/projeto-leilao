@@ -6,6 +6,8 @@ import br.com.leilao.leiloesapi.entities.Lance;
 import br.com.leilao.leiloesapi.repositories.LanceRepository;
 import br.com.leilao.leiloesapi.repositories.LeilaoRepository;
 import br.com.leilao.leiloesapi.repositories.UsuarioRepository;
+import br.com.leilao.leiloesapi.services.exceptions.ResourceNotFoundException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -42,9 +44,9 @@ public class LanceService {
     private void copyDtoToEntity(LanceDTO dto, Lance entity) {
         entity.setLance(dto.lance());
         entity.setUsuario(usuarioRepository.findById(dto.iduser())
-                .orElseThrow(() -> new RuntimeException("Usuário não encontrado com o ID: " + dto.iduser())));
+                .orElseThrow(() -> new ResourceNotFoundException("Usuário não encontrado com o ID: " + dto.iduser())));
         entity.setLeilao(leilaoRepository.findById(dto.idleilao())
-                .orElseThrow(() -> new RuntimeException("Leilão/Produto não encontrado com o ID: " + dto.idleilao())));
+                .orElseThrow(() -> new ResourceNotFoundException("Leilão/Produto não encontrado com o ID: " + dto.idleilao())));
     }
 
 }
