@@ -34,6 +34,7 @@ Os demais usuários, previamente cadastrados em sistema, poderão dar lances nos
      - Para as todas as validações do projeto foi utilizado @BeanValidation. Ademais, fora criado o tratamento de erro específico *MethodArgumentNotValidException* -erro 422- na camada de controlador *ControllerExceptionHandler*.
        
      - Há tratamento de erro caso exista busca ou exclusão por produto não encontrado (por id). *ResourceNotFoundException* -erro 404- na camada de controlador *ControllerExceptionHandler*, tratamento em nível de controlador.
+     - Swagger da API: http://www.localhost:8080/swagger-ui/index.html
       
 
  ## Estrutura do Projeto (Back-end)
