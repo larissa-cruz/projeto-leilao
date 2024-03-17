@@ -2,6 +2,8 @@ package br.com.leilao.leiloesapi.controllers;
 
 import br.com.leilao.leiloesapi.dtos.UsuarioLoginDTO;
 import br.com.leilao.leiloesapi.services.UsuarioService;
+import jakarta.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,7 +23,7 @@ public class LoginController {
     private UsuarioService usuarioService;
 
     @PostMapping
-    public ResponseEntity<?> loginUsuario(@RequestBody UsuarioLoginDTO usuarioLoginDTO) {
+    public ResponseEntity<?> loginUsuario(@RequestBody @Valid UsuarioLoginDTO usuarioLoginDTO) {
 
         UsuarioLoginDTO usuarioLogado = usuarioService.login(usuarioLoginDTO);
 
