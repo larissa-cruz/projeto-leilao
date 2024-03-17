@@ -58,7 +58,7 @@ public class LeilaoService {
         entity.setPrice(dto.price());
         entity.setData(dto.data());
         entity.setUsuario(usuarioRepository.findById(dto.iduser())
-                .orElseThrow(() -> new RuntimeException("Usuário não encontrado com o ID: " + dto.iduser())));
+                .orElseThrow(() -> new ResourceNotFoundException("Usuário não encontrado com o ID: " + dto.iduser())));
     }
 
 }
